@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        double rate = (double)1/23000;
+        double rate = (double) 1 / 23000;
         Scanner input = new Scanner(System.in);
         boolean loop = true;
         double vnd = 0;
@@ -17,7 +17,7 @@ public class Main {
                 System.out.println("Please enter a proper number");
             }
         } while (loop);
-        double usd = Math.round(vnd*rate*100.0) / 100.0;
+        double usd = Math.round(vnd * rate * 100.0) / 100.0;
         System.out.println("Amount in USD: " + usd);
     }
 }
