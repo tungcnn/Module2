@@ -1,10 +1,11 @@
 package com.example.readnumbertostring;
+
 import java.util.Scanner;
 
 public class ReadNumberToString {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        while(true) {
+        while (true) {
             boolean loop = true;
             int number = 0;
             do {
@@ -18,11 +19,11 @@ public class ReadNumberToString {
                 }
             } while (loop);
             String mess = "";
-            boolean isSmaller15 = 0 < number && number <= 15;
+            boolean isSmaller10 = 0 < number && number <= 10;
             if (number == 0) {
                 mess = "Zero";
-            } else if (isSmaller15) {
-                mess = numberTo15(number);
+            } else if (isSmaller10) {
+                mess = numberTo10(number);
             } else {
                 boolean isSmaller20 = number < 20;
                 if (isSmaller20) {
@@ -35,8 +36,7 @@ public class ReadNumberToString {
                         boolean isSmaller1000 = number < 1000;
                         if (isSmaller1000) {
                             mess = numberTo1000(number);
-                        }
-                        else {
+                        } else {
                             mess = "Out of ability";
                         }
                     }
@@ -45,7 +45,8 @@ public class ReadNumberToString {
             System.out.println(mess);
         }
     }
-    static public String numberTo15 (int number) {
+
+    static public String numberTo10(int number) {
         return switch (number) {
             case 1 -> "One";
             case 2 -> "Two";
@@ -57,50 +58,59 @@ public class ReadNumberToString {
             case 8 -> "Eight";
             case 9 -> "Nine";
             case 10 -> "Ten";
+            default -> "";
+        };
+    }
+
+    static public String numberTo20(int number) {
+        return switch (number) {
             case 11 -> "Eleven";
             case 12 -> "Twelve";
             case 13 -> "Thirteen";
             case 14 -> "Fourteen";
             case 15 -> "Fifteen";
+            case 16 -> "Sixteen";
+            case 17 -> "Seventeen";
+            case 18 -> "Eighteen";
+            case 19 -> "Nineteen";
             default -> "";
         };
     }
-    static public String numberTo20 (int number) {
+
+    static public String numberTo100(int number) {
         int ones = number % 10;
-        String one = numberTo15(ones);
-        return one+"teen";
-    }
-    static public String numberTo100 (int number) {
-        int ones = number%10;
-        int tens = (number - ones)/10;
+        int tens = (number - ones) / 10;
+        String oneStr = numberTo10(ones).toLowerCase();
         return switch (tens) {
-            case 2 -> "Twenty " + numberTo15(ones);
-            case 3 -> "Thirty " + numberTo15(ones);
-            case 4 -> "Forty " + numberTo15(ones);
-            case 5 -> "Fifty " + numberTo15(ones);
-            case 6 -> "Sixty " + numberTo15(ones);
-            case 7 -> "Seventy " + numberTo15(ones);
-            case 8 -> "Eighty " + numberTo15(ones);
-            case 9 -> "Ninety " + numberTo15(ones);
+            case 2 -> "Twenty " + oneStr;
+            case 3 -> "Thirty " + oneStr;
+            case 4 -> "Forty " + oneStr;
+            case 5 -> "Fifty " + oneStr;
+            case 6 -> "Sixty " + oneStr;
+            case 7 -> "Seventy " + oneStr;
+            case 8 -> "Eighty " + oneStr;
+            case 9 -> "Ninety " + oneStr;
             default -> "";
         };
     }
-    static public String numberTo1000 (int number) {
+
+    static public String numberTo1000(int number) {
         int hundreds = Integer.parseInt(Integer.toString(number).substring(0, 1));
-        number = number%100;
-        String a = number < 20?
-                number <= 15?
-                        numberTo15(number):numberTo20(number):"";
+        number = number % 100;
+        String a = number < 20 ?
+                number <= 10 ?
+                        numberTo10(number).toLowerCase() : numberTo20(number).toLowerCase() : "";
+        String b = a + numberTo100(number).toLowerCase();
         return switch (hundreds) {
-            case 1 -> "One hundred " + a + numberTo100(number);
-            case 2 -> "Two hundred " + a + numberTo100(number);
-            case 3 -> "Three hundred " + a + numberTo100(number);
-            case 4 -> "Four hundred " + a + numberTo100(number);
-            case 5 -> "Five hundred " + a + numberTo100(number);
-            case 6 -> "Six hundred " + a + numberTo100(number);
-            case 7 -> "Seven hundred " + a + numberTo100(number);
-            case 8 -> "Eight hundred " + a + numberTo100(number);
-            case 9 -> "Nine hundred " + a + numberTo100(number);
+            case 1 -> "One hundred " + b;
+            case 2 -> "Two hundred " + b;
+            case 3 -> "Three hundred " + b;
+            case 4 -> "Four hundred " + b;
+            case 5 -> "Five hundred " + b;
+            case 6 -> "Six hundred " + b;
+            case 7 -> "Seven hundred " + b;
+            case 8 -> "Eight hundred " + b;
+            case 9 -> "Nine hundred " + b;
             default -> "";
         };
     }
