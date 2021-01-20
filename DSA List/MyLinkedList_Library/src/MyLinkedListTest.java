@@ -34,7 +34,7 @@ public class MyLinkedListTest {
         System.out.println("Index of 26 is " + myLinkedList.indexOf(26));
         System.out.println("Head = " + myLinkedList.getFirst());
         System.out.println("Last = " + myLinkedList.getLast());
-        
+
         myLinkedList.clear();
         System.out.println("Cleared linked list. Now it contains: ");
         myLinkedList.printList();
