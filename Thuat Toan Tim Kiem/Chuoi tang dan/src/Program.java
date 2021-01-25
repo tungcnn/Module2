@@ -21,5 +21,8 @@ public class Program {
             System.out.print(ch);
         }
         System.out.println();
+        /*
+        Time complexity is 0(n)
+         */
     }
 }
