@@ -1,27 +1,25 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) throws IOException {
-        File ip = new File("in.txt");
-        File op = new File("out.txt");
-        copyFileUsingStream(ip, op);
+        ReadFile();
     }
-    private static void copyFileUsingStream(File source, File dest) throws IOException {
-        InputStream is = null;
-        OutputStream os = null;
+    public static void ReadFile() {
         try {
-            is = new FileInputStream(source);
-            os = new FileOutputStream(dest);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
+            FileWriter myWriter = new FileWriter("out.txt");
+            File myObj = new File("in.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                myWriter.write(myReader.nextLine() + "\n");
             }
-        } finally {
-            assert is != null;
-            is.close();
-            assert os != null;
-            os.close();
+            myReader.close();
+            myWriter.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Cannot find file");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println(1);
     }
 }
