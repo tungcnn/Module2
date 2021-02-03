@@ -21,7 +21,7 @@ public class News {
             Pattern p = Pattern.compile("Cate_TheGioi\\|MainList(.*?)title=(.*?)>(.*?)</a>");
             Matcher m = p.matcher(content);
             while (m.find()) {
-                System.out.println("Tin tức: " + m.group(3).substring(16));
+                System.out.println(m.group(3));
             }
         } catch (IOException e) {
             e.printStackTrace();
