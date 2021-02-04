@@ -1,13 +1,18 @@
+import factory.AbstractFactory;
+import entities.IShape;
+import factory.ShapeFactory;
+
 public class Demo {
     public static void main(String[] args) {
-        ShapeFactory sf = new ShapeFactory();
+        ShapeFactory shapeF = new ShapeFactory();
 
-        Shape myCircle = sf.getShape("Circle");
-        Shape mySquare = sf.getShape("Square");
-        Shape myRectangle = sf.getShape("Rectangle");
+        AbstractFactory factory2D = shapeF.getFactory("2D");
+        AbstractFactory factory3D = shapeF.getFactory("3D");
 
-        myCircle.draw();
-        mySquare.draw();
-        myRectangle.draw();
+        IShape circle = factory2D.getShape("entities.shape2D.Circle");
+        IShape cube = factory3D.getShape("entities.shape3D.Cube");
+
+        circle.draw();
+        cube.draw();
     }
 }
